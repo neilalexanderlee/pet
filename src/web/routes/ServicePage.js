@@ -1,6 +1,5 @@
 import React from 'react';
 import { Flex, WhiteSpace } from 'antd-mobile';
-import './style/MainFrame.less';
 
 const PlaceHolder = props => (
   <div
@@ -13,10 +12,10 @@ const PlaceHolder = props => (
       width: '100%',
     }}
     {...props}
-  >Item</div>
+  >Service</div>
 );
 
-const IndexPage = () => (
+const ServicePage = () => (
   <div className="flex-container">
     <div className="sub-title">基本</div>
     <Flex>
@@ -39,4 +38,4 @@ const IndexPage = () => (
   </div>
 );
 
-export default IndexPage;
+export default ServicePage;
