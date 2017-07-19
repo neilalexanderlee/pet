@@ -12,8 +12,8 @@ const MainFrame = ({ children, frame, selectTab }) => {
       barTintColor="white"
     >
       <TabBar.Item
-        icon={<Icon type="koubei-o" size="md" />}
-        selectedIcon={<Icon type="koubei" size="md" />}
+        icon={<Icon type={require('../assets/svg/homepage-o.svg')} size="md" />}
+        selectedIcon={<Icon type={require('../assets/svg/homepage.svg')} size="md" />}
         title="首页"
         key="home"
         selected={frame.selectedTab === ''}
@@ -27,8 +27,8 @@ const MainFrame = ({ children, frame, selectTab }) => {
         {children}
       </TabBar.Item>
       <TabBar.Item
-        icon={<Icon type="koubei-o" size="md" />}
-        selectedIcon={<Icon type="koubei" size="md" />}
+        icon={<Icon type={require('../assets/svg/service-o.svg')} size="md" />}
+        selectedIcon={<Icon type={require('../assets/svg/service.svg')} size="md" />}
         title="服务"
         key="service"
         selected={frame.selectedTab === 'service'}
@@ -42,8 +42,8 @@ const MainFrame = ({ children, frame, selectTab }) => {
         {children}
       </TabBar.Item>
       <TabBar.Item
-        icon={<Icon type="koubei-o" size="md" />}
-        selectedIcon={<Icon type="koubei" size="md" />}
+        icon={<Icon type={require('../assets/svg/people-o.svg')} size="md" />}
+        selectedIcon={<Icon type={require('../assets/svg/people.svg')} size="md" />}
         title="我的"
         key="user"
         selected={frame.selectedTab === 'user'}
