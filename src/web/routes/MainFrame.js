@@ -2,7 +2,6 @@ import React from 'react';
 import { TabBar, Icon } from 'antd-mobile';
 import { connect } from 'dva';
 import { hashHistory } from 'dva/router';
-import './style/MainFrame.less';
 
 const MainFrame = ({ children, frame, selectTab }) => {
   return (

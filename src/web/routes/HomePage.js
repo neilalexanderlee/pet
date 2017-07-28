@@ -1,41 +1,79 @@
 import React from 'react';
-import { Flex, WhiteSpace } from 'antd-mobile';
+import { WingBlank, WhiteSpace, Carousel, Grid } from 'antd-mobile';
+import styles from './style/HomePage.less';
+import banner1 from '../assets/banner/1.png';
+import banner2 from '../assets/banner/2.png';
+import banner3 from '../assets/banner/3.png';
+import banner4 from '../assets/banner/4.png';
+import banner5 from '../assets/banner/5.png';
 
-const PlaceHolder = props => (
-  <div
-    style={{
-      backgroundColor: '#ebebef',
-      color: '#bbb',
-      textAlign: 'center',
-      height: '0.6rem',
-      lineHeight: '0.6rem',
-      width: '100%',
-    }}
-    {...props}
-  >home</div>
-);
+class HomePage extends React.Component {
+  state = {
+    imgData: [banner1, banner2, banner3, banner4, banner5],
+    initialHeight: 200,
+  };
 
-const HomePage = () => (
-  <div className="flex-container">
-    <div className="sub-title">基本</div>
-    <Flex>
-      <Flex.Item><PlaceHolder /></Flex.Item>
-      <Flex.Item><PlaceHolder /></Flex.Item>
-    </Flex>
-    <WhiteSpace size="lg" />
-    <Flex>
-      <Flex.Item><PlaceHolder /></Flex.Item>
-      <Flex.Item><PlaceHolder /></Flex.Item>
-      <Flex.Item><PlaceHolder /></Flex.Item>
-    </Flex>
-    <WhiteSpace size="lg" />
-    <Flex>
-      <Flex.Item><PlaceHolder /></Flex.Item>
-      <Flex.Item><PlaceHolder /></Flex.Item>
-      <Flex.Item><PlaceHolder /></Flex.Item>
-      <Flex.Item><PlaceHolder /></Flex.Item>
-    </Flex>
-  </div>
-);
+  render() {
+    const hProp = this.state.initialHeight ? { height: this.state.initialHeight } : {};
+    const gridDatas = [
+      {
+        icon: banner5,
+        text: '美容预约',
+      },
+      {
+        icon: banner5,
+        text: '宠物出售',
+      },
+      {
+        icon: banner5,
+        text: '训练寄养',
+      },
+    ];
+    return (
+      <div>
+        <Carousel
+          className={styles.carousel}
+          autoplay
+          infinite
+          selectedIndex={2}
+          swipeSpeed={10}
+        >
+          {this.state.imgData.map((value, index) => (
+            <a key={index} style={hProp}>
+              <img
+                src={value}
+                alt="icon"
+                onLoad={() => {
+                  // fire window resize event to change height
+                  window.dispatchEvent(new Event('resize'));
+                  this.setState({
+                    initialHeight: null,
+                  });
+                }}
+                style={{ width: '100%' }}
+              />
+            </a>
+          ))}
+        </Carousel>
+        <WhiteSpace />
+        <WingBlank>
+          <div className="sub-title">服务</div>
+          <Grid
+            data={gridDatas}
+            columnNum={3}
+            renderItem={dataItem => (
+              <div style={{ padding: '0.05rem', height: '100%' }}>
+                <img src={dataItem.icon} style={{ width: '70%', height: '70%' }} alt="icon" />
+                <div style={{ marginTop: '0.05rem', marginBottom: '0.05rem' }}>
+                  {dataItem.text}
+                </div>
+              </div>
+            )}
+          />
+        </WingBlank>
+      </div>
+    );
+  }
+}
 
 export default HomePage;
