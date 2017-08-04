@@ -18,7 +18,7 @@ class HomePage extends React.Component {
     const gridDatas = [
       {
         icon: banner5,
-        text: '美容预约',
+        text: '美容洗浴',
       },
       {
         icon: banner5,

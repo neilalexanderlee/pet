@@ -2,6 +2,7 @@ import React from 'react';
 import { Router, Route, IndexRoute } from 'dva/router';
 import {
   MainFrame,
+  SubFrame,
   HomePage,
   ServicePage,
   UserPage,
@@ -21,7 +22,10 @@ function RouterConfig({ history }) {
           <Route path="role" component={UserIsAuthenticated(RoleSettingPage)} />
           <Route path="userRole" component={UserIsAuthenticated(UserRoleSettingPage)} />
           <Route path="admin" component={UserIsAuthenticated(UserIsAdmin(AdminPage))} /> */}
-        {/* </Route>*/}
+        {/* </Route> */}
+      </Route>
+      <Route path="app" component={SubFrame}>
+        <Route path="home" component={HomePage} />
       </Route>
     </Router>
   );
