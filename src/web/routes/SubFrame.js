@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavBar, Icon, Flex } from 'antd-mobile';
 import { connect } from 'dva';
-import { IndexLink, Link, hashHistory } from 'dva/router';
+import { IndexLink, hashHistory } from 'dva/router';
 
-const SubFrame = ({ children, location, selectTab }) => {
+const SubFrame = ({ children, location }) => {
   return (
     <div>
       <NavBar
@@ -15,16 +15,22 @@ const SubFrame = ({ children, location, selectTab }) => {
           </Flex>
         }
         rightContent={[
-          <Link to={location.pathname} key="0">
-            <Icon type={require('../assets/svg/refresh.svg')} style={{ marginRight: '0.32rem' }} />
-          </Link>,
+          <Icon
+            key="0"
+            type={require('../assets/svg/refresh.svg')}
+            style={{ marginRight: '0.32rem' }}
+            onClick={
+              () => {
+                hashHistory.push({
+                  pathname: location.pathname,
+                  query: location.query,
+                });
+              }
+            }
+          />,
           <IndexLink to="/" key="1">
             <Icon
               type={require('../assets/svg/homepage-o.svg')}
-              onClick={
-                () => {
-                  selectTab('');
-                }}
             />
           </IndexLink>,
         ]}
@@ -32,20 +38,16 @@ const SubFrame = ({ children, location, selectTab }) => {
         onLeftClick={
           () => hashHistory.goBack()
         }
-      />
+      >
+        {location.query.title}
+      </NavBar>
       {children}
     </div>
   );
 };
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps() {
   return {
-    selectTab(selectedTab) {
-      dispatch({
-        type: 'frame/update',
-        payload: { selectedTab },
-      });
-    },
   };
 }
 

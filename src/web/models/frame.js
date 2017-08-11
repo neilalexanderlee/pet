@@ -1,6 +1,5 @@
 
 const initialState = {
-  selectedTab: '',
 };
 
 export default {

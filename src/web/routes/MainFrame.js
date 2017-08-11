@@ -3,7 +3,7 @@ import { TabBar, Icon } from 'antd-mobile';
 import { connect } from 'dva';
 import { hashHistory } from 'dva/router';
 
-const MainFrame = ({ children, frame, selectTab }) => {
+const MainFrame = ({ children, location }) => {
   return (
     <TabBar
       unselectedTintColor="#949494"
@@ -15,9 +15,8 @@ const MainFrame = ({ children, frame, selectTab }) => {
         selectedIcon={<Icon type={require('../assets/svg/homepage.svg')} size="md" />}
         title="首页"
         key="home"
-        selected={frame.selectedTab === ''}
+        selected={location.pathname === '/'}
         onPress={() => {
-          selectTab('');
           hashHistory.push({
             pathname: '/',
           });
@@ -30,9 +29,8 @@ const MainFrame = ({ children, frame, selectTab }) => {
         selectedIcon={<Icon type={require('../assets/svg/service.svg')} size="md" />}
         title="服务"
         key="service"
-        selected={frame.selectedTab === 'service'}
+        selected={location.pathname === '/service'}
         onPress={() => {
-          selectTab('service');
           hashHistory.push({
             pathname: 'service',
           });
@@ -45,9 +43,8 @@ const MainFrame = ({ children, frame, selectTab }) => {
         selectedIcon={<Icon type={require('../assets/svg/people.svg')} size="md" />}
         title="我的"
         key="user"
-        selected={frame.selectedTab === 'user'}
+        selected={location.pathname === '/user'}
         onPress={() => {
-          selectTab('user');
           hashHistory.push({
             pathname: 'user',
           });
@@ -62,22 +59,15 @@ const MainFrame = ({ children, frame, selectTab }) => {
 MainFrame.propTypes = {
 };
 
-function mapStateToProps({ user, frame }) {
+function mapStateToProps({ user }) {
   const isAuthenticated = !!user.userName || false;
   return {
     isAuthenticated,
-    frame,
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps() {
   return {
-    selectTab(selectedTab) {
-      dispatch({
-        type: 'frame/update',
-        payload: { selectedTab },
-      });
-    },
   };
 }
 

@@ -6,6 +6,9 @@ import {
   HomePage,
   ServicePage,
   UserPage,
+  AppointmentPage,
+  SalePage,
+  TrainingPage,
 } from './routes';
 
 // import { UserIsAuthenticated, UserIsAdmin } from './utils/wrappers.js';
@@ -25,7 +28,9 @@ function RouterConfig({ history }) {
         {/* </Route> */}
       </Route>
       <Route path="app" component={SubFrame}>
-        <Route path="home" component={HomePage} />
+        <Route path="appointment" component={AppointmentPage} />
+        <Route path="sale" component={SalePage} />
+        <Route path="training" component={TrainingPage} />
       </Route>
     </Router>
   );

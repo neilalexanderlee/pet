@@ -1,5 +1,6 @@
 import React from 'react';
 import { WingBlank, WhiteSpace, Carousel, Grid } from 'antd-mobile';
+import { hashHistory } from 'dva/router';
 import styles from './style/HomePage.less';
 import banner1 from '../assets/banner/1.png';
 import banner2 from '../assets/banner/2.png';
@@ -19,14 +20,17 @@ class HomePage extends React.Component {
       {
         icon: banner5,
         text: '美容洗浴',
+        url: 'app/appointment',
       },
       {
         icon: banner5,
         text: '宠物出售',
+        url: 'app/sale',
       },
       {
         icon: banner5,
         text: '训练寄养',
+        url: 'app/training',
       },
     ];
     return (
@@ -61,6 +65,14 @@ class HomePage extends React.Component {
           <Grid
             data={gridDatas}
             columnNum={3}
+            onClick={(el) => {
+              hashHistory.push({
+                pathname: el.url,
+                query: {
+                  title: el.text,
+                },
+              });
+            }}
             renderItem={dataItem => (
               <div style={{ padding: '0.05rem', height: '100%' }}>
                 <img src={dataItem.icon} style={{ width: '70%', height: '70%' }} alt="icon" />
